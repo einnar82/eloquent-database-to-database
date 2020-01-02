@@ -18,7 +18,9 @@ class User extends Authenticatable
      * override the $table to 'database-name.table_name'
      */
 
-    protected $table = 'eloquent-test.users';
+    // protected $table = 'eloquent-test.users';
+
+    protected $connection = 'mysql';
 
     /**
      * The attributes that are mass assignable.

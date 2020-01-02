@@ -16,7 +16,9 @@ class Post extends Model
      * override the $table to 'database-name.table_name'
      */
 
-    protected $table = 'eloquent-test2.posts';
+    // protected $table = 'eloquent-test2.posts';
+
+    protected $connection = 'mysql2';
     
     public function user()
     {
