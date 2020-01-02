@@ -15,12 +15,14 @@ class CreatePostsTable extends Migration
     {
         // After we added the another mysql connection settings, call the connection function from
         // the Schema Class to specify the database connection path of the table
-        Schema::connection('mysql2')->create('posts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id')->default(1);
-            $table->longText('content')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::connection('mysql2')->hasTable('posts')) {
+            Schema::connection('mysql2')->create('posts', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->integer('user_id')->default(1);
+                $table->longText('content')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,6 +32,8 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql2')->dropIfExists('posts');
+        if (Schema::connection('mysql2')->hasTable('posts')) {
+            Schema::connection('mysql2')->drop('posts');
+        }
     }
 }
