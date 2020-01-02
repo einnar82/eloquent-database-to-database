@@ -16,6 +16,9 @@ class User extends Authenticatable
      *
      * Just like the regular mysql query, you can declare multiple database relationships
      * override the $table to 'database-name.table_name'
+     * or defined the connection name via
+     * $connection = 'your_database_connection';
+     *
      */
 
     // protected $table = 'eloquent-test.users';
